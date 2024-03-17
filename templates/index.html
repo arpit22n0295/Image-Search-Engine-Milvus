@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Search Engine</title>
+
+    <style>
+        /* CSS to display images in a row */
+        .image-container {
+          width: 100%; /* Adjust as needed */
+          text-align: center; /* Align images to center */
+        }
+        
+        .image-container img {
+          display: inline-block; /* Display images in a row */
+          width: 20%; /* Adjust as needed */
+          margin: 5px; /* Add spacing between images */
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1> Image Search Engine  </h1><br><br>
+    </center>
+    <center>
+        <form method ='post' action="/search" enctype="multipart/form-data">
+            <label for="query">  <b> Enter the Text : </b> </label>
+            <input type ='text' id="query" name="query" ><br><br>
+            <input type="submit" value="search"> <br> <br>
+        </form>
+    </center>
+    {% if top_images %}
+        <h1> Similar Images : </h1> <br><br>
+            {% for image in top_images %}
+                <img src="{{ url_for('static' , filename='dataset/data/' + image ) }}" alt="Image based on text search">
+            {% endfor %}
+    {% endif %}
+    <br> <br>
+    {% if time_taken %}
+        <h2> Time Taken to Search is : {{time_taken}} </h2>
+    {% endif %} <br><br>
+    <h1> Other Images : </h1>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='000055-2.jpg') }}" alt="Image 1">
+        <img src="{{ url_for('static', filename='000065.jpg') }}"   alt="Image 2">
+        <img src="{{ url_for('static', filename='000067-2.jpg') }}" alt="Image 3">
+        <img src="{{ url_for('static', filename='000069-2.jpg') }}" alt="Image 4">
+        <img src="{{ url_for('static', filename='000070-2.jpg') }}" alt="Image 5">
+    </div>
+    
+</body>
+</html>
